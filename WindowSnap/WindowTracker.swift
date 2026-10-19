@@ -1,7 +1,7 @@
 import Cocoa
 import os
 
-private let snapLog = Logger(subsystem: "com.windowsnap.WindowHolder", category: "WindowTracker")
+private let snapLog = Logger(subsystem: "com.windowsnap.WindowSnap", category: "WindowTracker")
 
 @_silgen_name("_AXUIElementGetWindow")
 private func _AXUIElementGetWindow(_ element: AXUIElement, _ identifier: UnsafeMutablePointer<CGWindowID>) -> AXError

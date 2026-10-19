@@ -1,7 +1,7 @@
 import Cocoa
 import os
 
-private let holderLog = Logger(subsystem: "com.windowsnap.WindowHolder", category: "HolderManager")
+private let holderLog = Logger(subsystem: "com.windowsnap.WindowSnap", category: "HolderManager")
 
 /// A window snapped into a holder. Closed-window and drag-out removal comes later.
 final class GroupedWindow {

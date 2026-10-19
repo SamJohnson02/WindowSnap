@@ -24,13 +24,13 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         main.addItem(appItem)
         let appMenu = NSMenu()
         appItem.submenu = appMenu
-        let about = appMenu.addItem(withTitle: "About WindowHolder", action: #selector(showAbout), keyEquivalent: "")
+        let about = appMenu.addItem(withTitle: "About WindowSnap", action: #selector(showAbout), keyEquivalent: "")
         about.target = self
         appMenu.addItem(.separator())
         let show = appMenu.addItem(withTitle: "Show Holder", action: #selector(showHolder), keyEquivalent: "")
         show.target = self
         appMenu.addItem(.separator())
-        let quit = appMenu.addItem(withTitle: "Quit WindowHolder", action: #selector(quit), keyEquivalent: "q")
+        let quit = appMenu.addItem(withTitle: "Quit WindowSnap", action: #selector(quit), keyEquivalent: "q")
         quit.target = self
 
         let holderItem = NSMenuItem()

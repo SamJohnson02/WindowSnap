@@ -13,7 +13,7 @@
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleDisplayName</key>
-	<string>WindowHolder</string>
+	<string>WindowSnap</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -29,6 +29,6 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSAccessibilityUsageDescription</key>
-	<string>WindowHolder moves and resizes other apps' windows so they snap into holders.</string>
+	<string>WindowSnap moves and resizes other apps' windows so they lock into holders.</string>
 </dict>
 </plist>

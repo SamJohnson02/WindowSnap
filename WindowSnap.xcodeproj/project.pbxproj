@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A0000000000000000000008 /* WindowHolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowHolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A0000000000000000000008 /* WindowSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0000000000000000000011 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A0000000000000000000012 /* HolderPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderPanel.swift; sourceTree = "<group>"; };
 		0A0000000000000000000013 /* HolderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderManager.swift; sourceTree = "<group>"; };
@@ -26,7 +26,7 @@
 		0A0000000000000000000015 /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
 		0A0000000000000000000016 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		0A0000000000000000000017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A0000000000000000000018 /* WindowHolder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WindowHolder.entitlements; sourceTree = "<group>"; };
+		0A0000000000000000000018 /* WindowSnap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WindowSnap.entitlements; sourceTree = "<group>"; };
 		0A0000000000000000000019 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0A000000000000000000001B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,7 +46,7 @@
 		0A0000000000000000000002 = {
 			isa = PBXGroup;
 			children = (
-				0A0000000000000000000010 /* WindowHolder */,
+				0A0000000000000000000010 /* WindowSnap */,
 				0A0000000000000000000003 /* Products */,
 				0A000000000000000000001A /* Frameworks */,
 			);
@@ -55,12 +55,12 @@
 		0A0000000000000000000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A0000000000000000000008 /* WindowHolder.app */,
+				0A0000000000000000000008 /* WindowSnap.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0A0000000000000000000010 /* WindowHolder */ = {
+		0A0000000000000000000010 /* WindowSnap */ = {
 			isa = PBXGroup;
 			children = (
 				0A0000000000000000000011 /* AppDelegate.swift */,
@@ -70,10 +70,10 @@
 				0A0000000000000000000015 /* HotkeyManager.swift */,
 				0A0000000000000000000016 /* MenuBarController.swift */,
 				0A0000000000000000000017 /* Info.plist */,
-				0A0000000000000000000018 /* WindowHolder.entitlements */,
+				0A0000000000000000000018 /* WindowSnap.entitlements */,
 				0A000000000000000000001B /* Assets.xcassets */,
 			);
-			path = WindowHolder;
+			path = WindowSnap;
 			sourceTree = "<group>";
 		};
 		0A000000000000000000001A /* Frameworks */ = {
@@ -109,9 +109,9 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0A0000000000000000000004 /* WindowHolder */ = {
+		0A0000000000000000000004 /* WindowSnap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A0000000000000000000042 /* Build configuration list for PBXNativeTarget "WindowHolder" */;
+			buildConfigurationList = 0A0000000000000000000042 /* Build configuration list for PBXNativeTarget "WindowSnap" */;
 			buildPhases = (
 				0A0000000000000000000009 /* Unlock Signing Keychain */,
 				0A0000000000000000000005 /* Sources */,
@@ -122,9 +122,9 @@
 			);
 			dependencies = (
 			);
-			name = WindowHolder;
-			productName = WindowHolder;
-			productReference = 0A0000000000000000000008 /* WindowHolder.app */;
+			name = WindowSnap;
+			productName = WindowSnap;
+			productReference = 0A0000000000000000000008 /* WindowSnap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -141,7 +141,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0A0000000000000000000041 /* Build configuration list for PBXProject "WindowHolder" */;
+			buildConfigurationList = 0A0000000000000000000041 /* Build configuration list for PBXProject "WindowSnap" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -154,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0A0000000000000000000004 /* WindowHolder */,
+				0A0000000000000000000004 /* WindowSnap */,
 			);
 		};
 /* End PBXProject section */
@@ -306,7 +306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WindowHolder/WindowHolder.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WindowSnap/WindowSnap.entitlements;
 				CODE_SIGN_IDENTITY = "WindowHolder Dev";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -316,7 +316,7 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = WindowHolder/Info.plist;
+				INFOPLIST_FILE = WindowSnap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -324,8 +324,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.1.0;
 				OTHER_CODE_SIGN_FLAGS = "--keychain $(HOME)/Library/Keychains/windowholder-signing.keychain-db";
-				PRODUCT_BUNDLE_IDENTIFIER = com.windowsnap.WindowHolder;
-				PRODUCT_NAME = WindowHolder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.windowsnap.WindowSnap;
+				PRODUCT_NAME = WindowSnap;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -336,7 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WindowHolder/WindowHolder.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WindowSnap/WindowSnap.entitlements;
 				CODE_SIGN_IDENTITY = "WindowHolder Dev";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -344,7 +344,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = WindowHolder/Info.plist;
+				INFOPLIST_FILE = WindowSnap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -352,8 +352,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.1.0;
 				OTHER_CODE_SIGN_FLAGS = "--keychain $(HOME)/Library/Keychains/windowholder-signing.keychain-db";
-				PRODUCT_BUNDLE_IDENTIFIER = com.windowsnap.WindowHolder;
-				PRODUCT_NAME = WindowHolder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.windowsnap.WindowSnap;
+				PRODUCT_NAME = WindowSnap;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -363,7 +363,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A0000000000000000000041 /* Build configuration list for PBXProject "WindowHolder" */ = {
+		0A0000000000000000000041 /* Build configuration list for PBXProject "WindowSnap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A0000000000000000000031 /* Debug */,
@@ -372,7 +372,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A0000000000000000000042 /* Build configuration list for PBXNativeTarget "WindowHolder" */ = {
+		0A0000000000000000000042 /* Build configuration list for PBXNativeTarget "WindowSnap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A0000000000000000000033 /* Debug */,

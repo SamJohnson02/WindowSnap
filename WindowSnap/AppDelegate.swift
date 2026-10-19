@@ -29,7 +29,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 @main
-enum WindowHolderMain {
+enum WindowSnapMain {
     static func main() {
         let app = NSApplication.shared
         let delegate = AppDelegate()
