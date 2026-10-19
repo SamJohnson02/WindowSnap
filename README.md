@@ -1,44 +1,77 @@
 # WindowHolder
 
-Native macOS app that places outline holders on screen and snaps other apps' windows into them.
+WindowHolder is a Mac app that keeps other apps’ windows together inside an orange outline. Drop a window onto the outline and it stays where you put it. A small pair of buttons at the top-left of the outline minimizes or closes every window locked in that holder.
 
-This slice implements holders and snapping only. Automatic removal from a group, close-all, the global close hotkey, and saved frames are not built yet.
+The app has a normal Dock icon. Click that icon to bring a minimized holder back.
 
-## What works now
+## How to use
 
-- **New Holder** adds a borderless panel that fills the screen’s usable area (menu bar and Dock stay clear). A thin bar along the top has Minimize and Delete. It joins every Space and stays available over full-screen apps.
-- Drag a window into the holder and release it. It stays at the size and position you dropped it, kept inside the area below the bar. Drag it again to rearrange it. Minimize hides the holder and minimizes every window locked in it. Delete closes those windows. Click the WindowHolder icon in the Dock to bring a minimized holder back.
-- **Edit Holders** turns mouse events back on for the whole outline. Drag inside it to move it. Drag an edge or corner to resize it. Press Escape or choose the menu item again to leave edit mode. **Delete Selected Holder** removes the outline you last clicked.
-- On left mouse-up, WindowHolder finds the topmost layer-0 window under the pointer (`CGWindowListCopyWindowInfo`), ignoring its own windows. It snaps when more than half of that window lies inside a holder, or when the window covers more than half of the holder. The window is moved and resized to the tile under the pointer with `AXPosition` and `AXSize`, then stored on that holder as an `AXUIElement` plus `CGWindowID`. The menu lists how many windows each holder has snapped.
+Click the WindowHolder icon in the Dock. A holder outline fills the usable area of the screen under the pointer. The menu bar and Dock stay clear.
+
+While WindowHolder is the front app, two menus appear at the top of the screen:
+
+| Menu | Item | Shortcut | What it does |
+| --- | --- | --- | --- |
+| WindowHolder | Show Holder | | Brings the holder forward, or restores it after minimize |
+| WindowHolder | Quit WindowHolder | ⌘Q | Quits the app |
+| Holder | New Holder | ⌘N | Adds another outline on the screen under the pointer |
+| Holder | Edit Holders | ⌘E | Lets you move and resize the outline. Choose it again (Done Editing) or press Escape to finish |
+| Holder | Delete Selected Holder | | Removes the outline you last clicked, while editing |
+
+### Snap a window
+
+1. Leave edit mode so the outline is just a border.
+2. Drag a window from another app over the outline and release it.
+3. It locks in if more than half of the window is inside the holder, or if the window covers more than half of the holder.
+4. The window keeps the size and position you dropped. Drag it again to move or resize it inside the holder.
+
+A click that does not move the window does not snap it. Clicks pass through the orange outline, so the windows inside stay usable. If several holders overlap the same drop, the one with the most overlap wins.
+
+### The buttons
+
+A small control sits at the top-left of each holder. It only covers the two icons.
+
+- **X** (left) closes every window locked in that holder and clears the group.
+- **−** (right of the X) minimizes those windows together and hides the holder.
+
+Click the Dock icon, or choose **Show Holder**, to bring them back. They return together in the same places and at the same sizes.
+
+### Move or resize a holder
+
+Choose **Edit Holders** (⌘E). Drag inside the outline to move it. Drag an edge or corner to resize it. The smallest size is about 280×180 points. Press Escape, or choose **Done Editing**, when you are finished.
+
+**Delete Selected Holder** removes the outline you last clicked. It does not close the windows that were inside it.
+
+## First launch
+
+macOS must allow WindowHolder to control other apps. The first time you run it, allow it under **System Settings → Privacy & Security → Accessibility**. If snapping does nothing after you allow it, quit WindowHolder and open it again. The grant applies to the next launch.
+
+If the Holder menu still shows **Reopen to Apply Access**, choose that item, or choose **Open Accessibility Settings…** and turn WindowHolder on.
 
 ## Requirements
 
 - macOS 13 or later
-- Xcode 15 or later
-
-## App Sandbox is off
-
-Accessibility control of other processes does not work inside the App Sandbox. `WindowHolder/WindowHolder.entitlements` sets `com.apple.security.app-sandbox` to false. Leave the sandbox disabled in Signing & Capabilities. Do not ship a sandboxed build.
+- Xcode 15 or later, if you are building it yourself
 
 ## Build and run
 
 1. Open `WindowHolder.xcodeproj`.
-2. Select the WindowHolder target. Debug builds are signed with the local **WindowHolder Dev** certificate, and the debug signature is kept stable so the Accessibility grant survives later runs. That certificate lives only in this Mac’s `windowholder-signing` keychain.
-3. Turning on “Sign to Run Locally” makes macOS treat every Run as a different app and drop the Accessibility grant. Leave the local certificate in place.
-4. Run. WindowHolder appears in the Dock. Click that icon to show the holder again after minimizing it. The WindowHolder menus are at the top of the screen while the app is active, same as any other Mac app.
-5. Allow WindowHolder under **System Settings → Privacy & Security → Accessibility**. Quit and relaunch after toggling it if snapping does nothing.
-6. Choose **New Holder**. Leave edit mode. Drag a window until most of it sits inside the outline, then release. It should snap to the outline, and the menu should show `1 window` for that holder.
+2. Choose the **WindowHolder** scheme and the **My Mac** destination.
+3. Press Run.
 
-Global mouse monitoring and window moving both require Accessibility access. Without it, the mouse-up monitor does not fire.
+Debug builds are signed with a local **WindowHolder Dev** certificate so the Accessibility permission can stick between runs on this Mac. Leave that signing setup as it is. Switching the target to “Sign to Run Locally” makes macOS treat every Run as a different app and ask for Accessibility again.
 
-## Sign and notarize a DMG
+After a Run, you can keep the app like any other download: in Xcode choose **Product → Show Build Folder in Finder**, drag `WindowHolder.app` into **Applications**, and open it from there. Right-click the Dock icon and choose **Options → Keep in Dock**.
 
-Distribution outside the App Store needs a **Developer ID Application** certificate, Hardened Runtime (already enabled), and the sandbox left off. Notarization uses an app-specific password or an App Store Connect API key.
+App Sandbox is off. Accessibility control of other apps does not work inside the sandbox. Leave `com.apple.security.app-sandbox` false in `WindowHolder/WindowHolder.entitlements`.
+
+## Share a download
+
+A copy you send to someone else needs an Apple **Developer ID Application** certificate and notarization. The local WindowHolder Dev certificate cannot be notarized. Hardened Runtime is on for Release builds. Keep the sandbox off.
 
 Replace `TEAMID` with your Team ID. `notarytool` stores credentials in the keychain on first use.
 
 ```bash
-# Archive an unsigned-by-Xcode release, or Product → Archive with Developer ID signing.
 xcodebuild -project WindowHolder.xcodeproj -scheme WindowHolder -configuration Release \
   -archivePath build/WindowHolder.xcarchive archive \
   DEVELOPMENT_TEAM=TEAMID CODE_SIGN_STYLE=Manual \
@@ -87,4 +120,4 @@ If notarization fails, inspect the log:
 xcrun notarytool log <submission-id> --keychain-profile "windowholder-notary"
 ```
 
-The ticket is stapled to the DMG so Gatekeeper accepts it offline. The app inside must already be signed with Hardened Runtime and a Developer ID certificate.
+The ticket is stapled to the DMG so Gatekeeper can accept it offline. The app inside must already be signed with Hardened Runtime and a Developer ID certificate.
