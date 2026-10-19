@@ -4,6 +4,20 @@ WindowHolder keeps other apps’ windows together inside an orange outline on yo
 
 Other people do not need Xcode. They open `WindowHolder.app` from the Dock, the same way they open any other Mac app. Xcode is only for building the app from this project.
 
+## How to install
+
+You need macOS 13 or later.
+
+1. Open the `WindowHolder` disk image, or the folder that contains `WindowHolder.app`.
+2. Drag **WindowHolder** into the **Applications** folder.
+3. Open WindowHolder from Applications. It appears in the Dock.
+4. When macOS asks, allow it under **System Settings → Privacy & Security → Accessibility**.
+5. Quit WindowHolder and open it again. Snapping starts on that next launch.
+
+To keep the icon in the Dock, right-click it and choose **Options → Keep in Dock**.
+
+If you are building it from this project instead of installing a copy, use [Build it yourself](#build-it-yourself), then drag the built `WindowHolder.app` into Applications the same way.
+
 ## How to use
 
 Open WindowHolder. An orange outline fills the screen, leaving the menu bar and Dock clear.
@@ -22,8 +36,6 @@ With WindowHolder in front, the **Holder** menu at the top of the screen has:
 - **New Holder** (⌘N) adds another outline.
 - **Edit Holders** (⌘E) lets you drag the outline to move it, or drag an edge to resize it. Press Escape when you are done.
 - **Delete Selected Holder** removes the outline you last clicked.
-
-The first time you open it, allow WindowHolder in **System Settings → Privacy & Security → Accessibility**. Quit and open it again if windows do not snap.
 
 ## For someone else
 
