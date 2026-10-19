@@ -2,21 +2,29 @@
 
 WindowHolder keeps other apps’ windows together inside an orange outline on your Mac. Drop a window on the outline and it stays where you put it.
 
-Other people do not need Xcode. They open `WindowHolder.app` from the Dock, the same way they open any other Mac app. Xcode is only for building the app from this project.
+There is no installer on this page yet. To use the app, you build it once in Xcode, then open it like any other Mac app.
 
 ## How to install
 
-You need macOS 13 or later.
+You need a Mac on macOS 13 or later.
 
-1. Open the `WindowHolder` disk image, or the folder that contains `WindowHolder.app`.
-2. Drag **WindowHolder** into the **Applications** folder.
-3. Open WindowHolder from Applications. It appears in the Dock.
-4. When macOS asks, allow it under **System Settings → Privacy & Security → Accessibility**.
-5. Quit WindowHolder and open it again. Snapping starts on that next launch.
-
-To keep the icon in the Dock, right-click it and choose **Options → Keep in Dock**.
-
-If you are building it from this project instead of installing a copy, use [Build it yourself](#build-it-yourself), then drag the built `WindowHolder.app` into Applications the same way.
+1. Install **Xcode** from the Mac App Store. Open Xcode once. If it asks to install extra components, click **Install** and wait for that to finish.
+2. Open [github.com/SamJohnson02/WindowSnap](https://github.com/SamJohnson02/WindowSnap).
+3. Click the green **Code** button, then **Download ZIP**.
+4. In **Downloads**, double-click the zip file. A folder named `WindowSnap-main` opens.
+5. Double-click **WindowHolder.xcodeproj**. Xcode opens.
+6. The project is signed for one specific Mac, so a new computer has to change two settings before it will run:
+   - In the left sidebar, click the blue **WindowHolder** project icon.
+   - Under **TARGETS**, click **WindowHolder**.
+   - Open the **Build Settings** tab.
+   - In the search box, type `code sign`.
+   - Set **Code Signing Identity** to **Sign to Run Locally**.
+   - Delete the text in **Other Code Signing Flags**.
+7. At the top of the Xcode window, set the scheme to **WindowHolder** and the destination to **My Mac**.
+8. Click the **Play** button. The app builds and an orange outline appears.
+9. macOS asks for permission. Turn WindowHolder on under **System Settings → Privacy & Security → Accessibility**.
+10. Quit WindowHolder, then click **Play** again. Snapping works on this second launch.
+11. To keep the app after you close Xcode: in the Xcode menu bar choose **Product → Show Build Folder in Finder**. Drag **WindowHolder.app** into **Applications**. Open it from there next time. Right-click the Dock icon and choose **Options → Keep in Dock** if you want it to stay.
 
 ## How to use
 
@@ -36,19 +44,3 @@ With WindowHolder in front, the **Holder** menu at the top of the screen has:
 - **New Holder** (⌘N) adds another outline.
 - **Edit Holders** (⌘E) lets you drag the outline to move it, or drag an edge to resize it. Press Escape when you are done.
 - **Delete Selected Holder** removes the outline you last clicked.
-
-## For someone else
-
-Send them a built `WindowHolder.app`, or a disk image that contains it. They move it to Applications and open it. They never open this Xcode project.
-
-macOS blocks an app downloaded from the internet unless it is signed with an Apple Developer ID and notarized. The certificate used for local Xcode runs cannot be shared that way. An Apple Developer account is required before other people can download and open it normally.
-
-## Build it yourself
-
-You need macOS 13 or later and Xcode 15 or later.
-
-1. Open `WindowHolder.xcodeproj`.
-2. Choose the **WindowHolder** scheme and **My Mac**.
-3. Press Run.
-
-To keep that build like a normal app, choose **Product → Show Build Folder in Finder** and drag `WindowHolder.app` into Applications.
