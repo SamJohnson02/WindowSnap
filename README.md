@@ -1,6 +1,17 @@
 # WindowHolder
 
-WindowHolder keeps other apps’ windows together inside an orange outline on your Mac. Drop a window on the outline and it stays where you put it.
+WindowHolder is a Mac app that groups windows from other apps into a holder. A holder is an orange outline on the screen. You drag windows onto it and arrange them yourself: two stacked on the left, one on the right, or any other layout. Each window stays the size and in the spot where you dropped it.
+
+Once a window is in the holder, it is locked to that group. You still click and type in those windows as usual. The outline does not get in the way.
+
+The two buttons at the top-left act on every window in that holder at once:
+
+- **−** minimizes the whole group together and hides the outline.
+- **X** closes the whole group.
+
+Click the WindowHolder icon in the Dock to bring a minimized group back. The windows return together, in the same places and at the same sizes.
+
+You can add more holders, and you can drag the outline to another part of the screen. A holder stays available on every desktop, including over a full-screen app.
 
 There is no installer on this page yet. To use the app, you build it once in Xcode, then open it like any other Mac app.
 
