@@ -315,6 +315,46 @@ final class HolderManager: HolderPanelDelegate {
         holder.removeAllWindows()
     }
 
+    /// Moves each window into the matching slot of `layout`. Slots share edges and reach the holder corners.
+    @discardableResult
+    func placeWindows(_ windows: [ExternalWindow], layout: HolderLayout) -> Int {
+        guard !windows.isEmpty, layout.slots.count == windows.count else { return 0 }
+        let holder = holderForPlacement()
+        let tiles = layout.frames(in: holder.panel.contentScreenFrame)
+        var placedCount = 0
+        for (target, tile) in zip(windows, tiles) {
+            guard let element = WindowTracker.element(matching: target) else { continue }
+            WindowTracker.setMinimized([element], minimized: false)
+            let placed = fittedFrame(element, windowID: target.windowID, proposed: tile, content: holder.panel.contentScreenFrame)
+            AXUIElementPerformAction(element, kAXRaiseAction as CFString)
+            for other in holders where other !== holder {
+                other.remove(windowID: target.windowID)
+            }
+            holder.place(GroupedWindow(
+                windowID: target.windowID,
+                pid: target.pid,
+                ownerName: target.ownerName,
+                element: element,
+                frame: placed
+            ))
+            placedCount += 1
+        }
+        holder.panel.orderFrontRegardless()
+        return placedCount
+    }
+
+    private func holderForPlacement() -> Holder {
+        if let visible = holders.last(where: { !$0.panel.isMinimized }) {
+            return visible
+        }
+        if let hidden = holders.last {
+            hidden.panel.restore()
+            return hidden
+        }
+        createHolder()
+        return holders[holders.count - 1]
+    }
+
     /// Dock click. Restores a minimized holder, or brings the current one forward.
     func presentHolders() {
         if hasHiddenHolder {

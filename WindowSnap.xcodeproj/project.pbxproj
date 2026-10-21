@@ -13,6 +13,8 @@
 		0A0000000000000000000024 /* WindowTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000000000000000000014 /* WindowTracker.swift */; };
 		0A0000000000000000000025 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000000000000000000015 /* HotkeyManager.swift */; };
 		0A0000000000000000000026 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000000000000000000016 /* MenuBarController.swift */; };
+		0A0000000000000000000029 /* PickerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000000000000000000001C /* PickerWindowController.swift */; };
+		0A000000000000000000002A /* HolderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000000000000000000001D /* HolderLayout.swift */; };
 		0A0000000000000000000027 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0000000000000000000019 /* Cocoa.framework */; };
 		0A0000000000000000000028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A000000000000000000001B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -25,6 +27,8 @@
 		0A0000000000000000000014 /* WindowTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTracker.swift; sourceTree = "<group>"; };
 		0A0000000000000000000015 /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
 		0A0000000000000000000016 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		0A000000000000000000001C /* PickerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerWindowController.swift; sourceTree = "<group>"; };
+		0A000000000000000000001D /* HolderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderLayout.swift; sourceTree = "<group>"; };
 		0A0000000000000000000017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A0000000000000000000018 /* WindowSnap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WindowSnap.entitlements; sourceTree = "<group>"; };
 		0A0000000000000000000019 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -69,6 +73,8 @@
 				0A0000000000000000000014 /* WindowTracker.swift */,
 				0A0000000000000000000015 /* HotkeyManager.swift */,
 				0A0000000000000000000016 /* MenuBarController.swift */,
+				0A000000000000000000001C /* PickerWindowController.swift */,
+				0A000000000000000000001D /* HolderLayout.swift */,
 				0A0000000000000000000017 /* Info.plist */,
 				0A0000000000000000000018 /* WindowSnap.entitlements */,
 				0A000000000000000000001B /* Assets.xcassets */,
@@ -181,6 +187,8 @@
 				0A0000000000000000000024 /* WindowTracker.swift in Sources */,
 				0A0000000000000000000025 /* HotkeyManager.swift in Sources */,
 				0A0000000000000000000026 /* MenuBarController.swift in Sources */,
+				0A0000000000000000000029 /* PickerWindowController.swift in Sources */,
+				0A000000000000000000002A /* HolderLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
