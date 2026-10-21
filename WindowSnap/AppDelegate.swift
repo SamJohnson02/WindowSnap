@@ -3,14 +3,16 @@ import Cocoa
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var holderManager: HolderManager!
     private var menuBarController: MenuBarController!
+    private var picker: PickerWindowController!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         holderManager = HolderManager()
-        menuBarController = MenuBarController(holderManager: holderManager)
-        holderManager.start()
-        if holderManager.holders.isEmpty {
-            holderManager.createHolder()
+        picker = PickerWindowController(holderManager: holderManager)
+        menuBarController = MenuBarController(holderManager: holderManager) { [weak self] in
+            self?.picker.show()
         }
+        holderManager.start()
+        picker.show()
 
         DispatchQueue.main.async {
             WindowTracker.promptForTrustIfNeeded()
@@ -19,7 +21,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        menuBarController.revealFromDock()
+        if holderManager.hasHiddenHolder {
+            menuBarController.revealFromDock()
+        } else {
+            picker.show()
+        }
         return false
     }
 

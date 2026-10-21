@@ -6,6 +6,13 @@ private let snapLog = Logger(subsystem: "com.windowsnap.WindowSnap", category: "
 @_silgen_name("_AXUIElementGetWindow")
 private func _AXUIElementGetWindow(_ element: AXUIElement, _ identifier: UnsafeMutablePointer<CGWindowID>) -> AXError
 
+struct OpenApplication {
+    let pid: pid_t
+    let name: String
+    let icon: NSImage
+    let window: ExternalWindow
+}
+
 struct ExternalWindow {
     let windowID: CGWindowID
     let pid: pid_t
@@ -114,6 +121,49 @@ enum WindowTracker {
     static func shouldSnap(window: CGRect, holder: CGRect) -> Bool {
         let coverage = snapCoverage(of: window, with: holder)
         return coverage.window > overlapThreshold || coverage.holder > overlapThreshold
+    }
+
+    /// One window per other app that is open on screen. The largest window stands in for that app.
+    static func openApplications(excludingPID: pid_t) -> [OpenApplication] {
+        guard let list = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] else {
+            return []
+        }
+        var largest: [pid_t: ExternalWindow] = [:]
+        for info in list {
+            guard int(from: info, key: kCGWindowLayer) == 0 else { continue }
+            guard let pidValue = int(from: info, key: kCGWindowOwnerPID) else { continue }
+            let pid = pid_t(pidValue)
+            guard pid != excludingPID else { continue }
+            let alpha = (info[kCGWindowAlpha as String] as? NSNumber)?.doubleValue ?? 1
+            guard alpha > 0.01 else { continue }
+            guard let windowNumber = int(from: info, key: kCGWindowNumber) else { continue }
+            guard let quartzFrame = quartzBounds(from: info), quartzFrame.width > 40, quartzFrame.height > 40 else { continue }
+            let owner = info[kCGWindowOwnerName as String] as? String ?? ""
+            let candidate = ExternalWindow(
+                windowID: CGWindowID(windowNumber),
+                pid: pid,
+                ownerName: owner,
+                quartzFrame: quartzFrame
+            )
+            if let current = largest[pid],
+               current.quartzFrame.width * current.quartzFrame.height >= quartzFrame.width * quartzFrame.height {
+                continue
+            }
+            largest[pid] = candidate
+        }
+
+        let running = NSWorkspace.shared.runningApplications
+        let ownBundleID = Bundle.main.bundleIdentifier
+        return largest.compactMap { pid, window in
+            guard let app = running.first(where: { $0.processIdentifier == pid }) else { return nil }
+            guard app.activationPolicy == .regular else { return nil }
+            if let ownBundleID, app.bundleIdentifier == ownBundleID { return nil }
+            let name = app.localizedName ?? window.ownerName
+            guard !name.isEmpty else { return nil }
+            let icon = app.icon ?? NSImage(systemSymbolName: "app", accessibilityDescription: name) ?? NSImage()
+            return OpenApplication(pid: pid, name: name, icon: icon, window: window)
+        }
+        .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
     }
 
     /// Topmost layer-0 window under the cursor, skipping this process.

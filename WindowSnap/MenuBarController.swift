@@ -3,10 +3,12 @@ import Cocoa
 /// Application menus for the Dock app. The Dock icon, not a status item, brings a minimized holder back.
 final class MenuBarController: NSObject, NSMenuDelegate {
     private let holderManager: HolderManager
+    private let showPicker: () -> Void
     private let holderMenu = NSMenu(title: "Holder")
 
-    init(holderManager: HolderManager) {
+    init(holderManager: HolderManager, showPicker: @escaping () -> Void) {
         self.holderManager = holderManager
+        self.showPicker = showPicker
         super.init()
         holderMenu.delegate = self
         installMainMenu()
@@ -27,6 +29,8 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         let about = appMenu.addItem(withTitle: "About WindowSnap", action: #selector(showAbout), keyEquivalent: "")
         about.target = self
         appMenu.addItem(.separator())
+        let choose = appMenu.addItem(withTitle: "Choose Apps…", action: #selector(chooseApps), keyEquivalent: "o")
+        choose.target = self
         let show = appMenu.addItem(withTitle: "Show Holder", action: #selector(showHolder), keyEquivalent: "")
         show.target = self
         appMenu.addItem(.separator())
@@ -68,6 +72,10 @@ final class MenuBarController: NSObject, NSMenuDelegate {
 
     @objc private func showAbout() {
         NSApp.orderFrontStandardAboutPanel(nil)
+    }
+
+    @objc private func chooseApps() {
+        showPicker()
     }
 
     @objc private func showHolder() {
