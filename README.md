@@ -15,6 +15,19 @@ Click the WindowSnap icon in the Dock to bring a minimized group back. The windo
 
 You can add more holders, and you can drag the outline to another part of the screen. A holder stays available on every desktop, including over a full-screen app.
 
+## How to use
+
+Open WindowSnap. A window lists the other apps that are open. Check the ones you want, or click **Select All**. The layout menu lists arrangements that fit that number of apps. Each spot in the diagram is a menu, so you can choose which app goes there. Then click **Place in Holder**. WindowSnap draws an orange outline and arranges those apps inside it.
+
+You can still drag a window onto the outline yourself. It locks in when most of the window is inside the outline, or when the window covers most of the outline. It keeps the size and position you dropped. Drag it again to rearrange it.
+
+Two buttons sit at the top-left of the outline:
+
+- **X** closes every window locked in that holder.
+- **−** minimizes those windows together and hides the holder.
+
+Click the WindowSnap icon in the Dock to bring them back in the same places and sizes. If nothing is minimized, that click opens the app list again. **Choose Apps…** in the WindowSnap menu does the same thing.
+
 ## Download
 
 You need a Mac on macOS 13 or later. You do not need Xcode.
@@ -50,18 +63,7 @@ You need a Mac on macOS 13 or later, and Xcode if you want to change the app.
 10. Quit WindowSnap, then click **Play** again. WindowSnap works on this second launch.
 11. To keep the app after you close Xcode: in the Xcode menu bar choose **Product → Show Build Folder in Finder**. Drag **WindowSnap.app** into **Applications**. Open it from there next time. Right-click the Dock icon and choose **Options → Keep in Dock** if you want it to stay.
 
-## How to use
 
-Open WindowSnap. A window lists the other apps that are open. Check the ones you want, or click **Select All**. The layout menu lists arrangements that fit that number of apps. Each spot in the diagram is a menu, so you can choose which app goes there. Then click **Place in Holder**. WindowSnap draws an orange outline and arranges those apps inside it.
-
-You can still drag a window onto the outline yourself. It locks in when most of the window is inside the outline, or when the window covers most of the outline. It keeps the size and position you dropped. Drag it again to rearrange it.
-
-Two buttons sit at the top-left of the outline:
-
-- **X** closes every window locked in that holder.
-- **−** minimizes those windows together and hides the holder.
-
-Click the WindowSnap icon in the Dock to bring them back in the same places and sizes. If nothing is minimized, that click opens the app list again. **Choose Apps…** in the WindowSnap menu does the same thing.
 
 With WindowSnap in front, the **Holder** menu at the top of the screen has:
 
